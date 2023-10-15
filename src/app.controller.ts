@@ -1,13 +1,14 @@
-import { Controller, Get, Post, Delete, Put } from '@nestjs/common';
+import { Controller, Body, Get, Post, Delete, Put } from '@nestjs/common';
 import { AppService } from './app.service';
+import { Serie } from './Models/serie.model';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Post()
-  create(): string {
-    return this.appService.create();
+  create(@Body() serie: Serie): string {
+    return this.appService.create(serie);
   }
 
   @Get()

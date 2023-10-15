@@ -7,8 +7,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Post()
-  create(@Body() serie: Serie): string {
-    return this.appService.create(serie);
+  async create(@Body() serie: Serie): Promise<string> {
+    return await this.appService.create(serie);
   }
 
   @Get()

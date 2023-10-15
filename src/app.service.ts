@@ -19,7 +19,7 @@ export class AppService {
     } catch (err) {
       return err;
     } finally {
-
+      await client.close();
     }
   }
   

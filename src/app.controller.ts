@@ -23,7 +23,7 @@ export class AppController {
   }
 
   @Put(':id')
-  update(@Param() params: any, @Body() serie: Serie): string {
-    return this.appService.update(id, serie);
+  async update(@Param() params: any, @Body() serie: Serie): Promise<string> {
+    return await this.appService.update(params.id, serie);
   }
 }

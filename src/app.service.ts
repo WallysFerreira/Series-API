@@ -30,8 +30,18 @@ export class AppService {
     }
   }
   
-  getAll(): string {
-    return 'WIP';
+  async getAll(): Promise<any> {
+    try {
+      const collection = await connect();
+
+      const result = await collection.find({}).toArray();
+
+      return result;
+    } catch (err) {
+      return err;
+    } finally {
+      client.close();
+    }
   }
 
   delete(): string {

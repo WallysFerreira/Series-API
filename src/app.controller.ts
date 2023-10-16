@@ -1,4 +1,4 @@
-import { Controller, Body, Get, Post, Delete, Put } from '@nestjs/common';
+import { Controller, Header, Body, Get, Post, Delete, Put } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Serie } from './Models/serie.model';
 
@@ -12,8 +12,9 @@ export class AppController {
   }
 
   @Get()
-  async getAll(): Promise<string> {
-    return this.appService.getAll();
+  @Header('Content-Type', 'application/json')
+  async getAll(): Promise<any> {
+    return await this.appService.getAll();
   }
 
   @Delete()

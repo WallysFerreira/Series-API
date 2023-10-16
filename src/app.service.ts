@@ -58,7 +58,17 @@ export class AppService {
     }
   }
 
-  update(): string {
-    return 'WIP';
+  async update(id: any, serie: Serie): Promise<any> {
+    try {
+      const collection = await connect();
+
+      const result = await collection.updateOne({ _id: new ObjectId(id) }, { $set: { name: serie.name, platform: serie.platform, release_year: serie.release_year, number_seasons: serie.number_seasons }});
+
+      return result;
+    } catch (err) {
+      return err;
+    } finally {
+      client.close();
+    }
   }
 }

@@ -12,7 +12,7 @@ export class AppController {
   }
 
   @Get()
-  getAll(): string {
+  async getAll(): Promise<string> {
     return this.appService.getAll();
   }
 

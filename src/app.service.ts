@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Serie } from './Models/serie.model';
 import 'dotenv/config';
-import { Collection } from 'mongodb';
+import { Collection, MongoDBCollectionNamespace, ObjectId } from 'mongodb';
 
 const { MongoClient } = require('mongodb');
 const dbName = "series";
@@ -44,8 +44,18 @@ export class AppService {
     }
   }
 
-  delete(): string {
-    return 'WIP';
+  async delete(id: any): Promise<any> {
+    try {
+      const collection = await connect();
+      
+      const result = await collection.deleteOne({ _id: new ObjectId(id) });
+
+      return result;
+    } catch (err) {
+      return err;
+    } finally {
+      client.close();
+    }
   }
 
   update(): string {

@@ -22,8 +22,8 @@ export class AppController {
     return await this.appService.delete(params.id);
   }
 
-  @Put()
-  update(): string {
-    return this.appService.update();
+  @Put(':id')
+  update(@Param() params: any, @Body() serie: Serie): string {
+    return this.appService.update(id, serie);
   }
 }

@@ -1,4 +1,4 @@
-import { Controller, Header, Body, Params, Get, Post, Delete, Put } from '@nestjs/common';
+import { Controller, Header, Body, Param, Get, Post, Delete, Put } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Serie } from './Models/serie.model';
 
@@ -18,8 +18,8 @@ export class AppController {
   }
 
   @Delete(':id')
-  delete(@Params() params: any): string {
-    return this.appService.delete(params.id)
+  delete(@Param() params: any): string {
+    return this.appService.delete(params.id);
   }
 
   @Put()

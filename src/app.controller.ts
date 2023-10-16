@@ -18,8 +18,8 @@ export class AppController {
   }
 
   @Delete(':id')
-  delete(@Param() params: any): string {
-    return this.appService.delete(params.id);
+  async delete(@Param() params: any): Promise<string> {
+    return await this.appService.delete(params.id);
   }
 
   @Put()
